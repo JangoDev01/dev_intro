@@ -6,4 +6,4 @@ from django.http import HttpResponse
     Atualmente, ela retorna uma mensagem simples de boas-vindas.
 """
 def home(request):
-    return HttpResponse("Ola Mundo! Bem-vindo ao meu aplicativo de tarefas!")
+    return render(request, 'to_do/home.html')
