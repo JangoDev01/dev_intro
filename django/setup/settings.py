@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'to_do.apps.ToDoConfig', # Adicione o aplicativo "to_do" à lista de aplicativos instalados
 ]
 
 MIDDLEWARE = [
