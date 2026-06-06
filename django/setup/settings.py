@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config, Csv
+from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bhh+(16--@!3z-_40q-tn0!#vq40oxi%z1pjl4y=2q827r#7)('
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
 
 # Application definition
@@ -73,11 +75,15 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# O código abaixo configura o banco de dados usando a variável de ambiente DATABASE_URL.
+# Se a variável de ambiente não estiver definida, ele usará um banco de dados SQLite localizado no diretório base do projeto.
+# O uso da função config do pacote decouple permite que as configurações sejam facilmente gerenciadas por meio de variáveis de ambiente, 
+# o que é uma prática recomendada para manter as credenciais e configurações sensíveis fora do código-fonte.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': config(
+        'DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}', 
+        cast=db_url
+    )
 }
 
 
