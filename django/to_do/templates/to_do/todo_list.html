@@ -8,6 +8,15 @@
 <body>
 
     <h1>To-Do List</h1>
+
+    <h2>Olá, {{ autor }}!</h2>
+
+    <ul>
+        {% for td in todo %}
+
+            <li>{{ td.titulo }}</li>
+        {% endfor %}
+    </ul>
     
 </body>
 </html>
