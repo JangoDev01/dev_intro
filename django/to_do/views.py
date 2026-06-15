@@ -42,4 +42,5 @@ class Todo_ListView(ListView):
 """
 class Todo_CreateView(CreateView):
     model = To_do
+    template_name = "to_do/todo_form.html"
     fields = ["title", "deadline"]
