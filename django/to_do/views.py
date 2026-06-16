@@ -1,4 +1,6 @@
 from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy # reverse_lazy é uma função que retorna a URL de uma view com base no nome da view
+                                     # e nos argumentos fornecidos.
 
 from .models import To_do
 
@@ -54,3 +56,4 @@ class Todo_CreateView(CreateView):
     model = To_do
     template_name = "to_do/todo_form.html"
     fields = ["title", "deadline"]
+    success_url = reverse_lazy("todo_list")
