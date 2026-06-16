@@ -3,7 +3,7 @@
 {% block title %}Nova Tarefa{% endblock %}
 
 {% block content %}
-    <form method="POST" class="row g-3 needs-validation" novalidate>
+    <form method="POST" class="row g-2">
         <!-- 
             O token CSRF é necessário para proteger contra ataques de falsificação de solicitação entre sites (Cross-Site Request Forgery)
             Ele é gerado automaticamente pelo Django e deve ser incluído em todos os formulários que fazem POST para o servidor.
@@ -11,16 +11,9 @@
         -->
         {% csrf_token %}
         
-        <div class="col-md-4">
-            <label for="validationCustom01" class="form-label">Titulo</label>
-            <input type="text" class="form-control" id="validationCustom01" required>
-        </div>
-        <div class="col-md-4">
-            <label for="validationCustom02" class="form-label">Data de Vencimento</label>
-            <input type="text" class="form-control" id="validationCustom02" required>
-        </div>
+        {{ form }}
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Criar Tarefa</button>
+            <button type="submit" class="btn btn-primary">Criar Tarefa</button>
         </div>
     </form>
 {% endblock %}
