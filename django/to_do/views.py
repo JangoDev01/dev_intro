@@ -23,6 +23,16 @@ from .models import To_do
     # to_do = To_do.objects.all()
     # return render(request, "to_do/todo_list.html", {"todo": to_do, "autor": autor})
 
+"""
+  A classe Todo_BaseView é uma view baseada em classe (class-based view) que herda de ListView.
+  Ela é responsável por carregar a lista de tarefas do modelo To_do e renderizar o template base.html.
+  Alem de servir como a view inicial do projeto, onde todas as demais views são carregadas.
+"""
+class Todo_BaseView(ListView):
+    model = To_do
+    template_name = "base.html"
+    context_object_name = "todo"
+
 
 """
   A classe Todo_ListView é uma view baseada em classe (class-based view) que herda de ListView.
