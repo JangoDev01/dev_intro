@@ -31,16 +31,31 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+THIRD_PARTY_APPS = [
+    # O pacote django-crispy-forms é uma biblioteca de terceiros para Django
+    # que facilita a criação de formulários HTML de maneira elegante e personalizável. 
+    # Ele oferece uma série de recursos para melhorar a aparência e a funcionalidade dos formulários, 
+    # como suporte a diferentes frameworks CSS (como Bootstrap), renderização automática de campos, 
+    # validação de formulários e muito mais. Ao incluir "crispy_forms" na lista de aplicativos instalados, 
+    # você pode aproveitar esses recursos para criar formulários mais atraentes e fáceis de usar em seu projeto Django.
+    "crispy_forms", 
+    "crispy_bootstrap5",
+]
+
+MY_APPS = [
     'to_do.apps.ToDoConfig', # Adicione o aplicativo "to_do" à lista de aplicativos instalados
 ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,3 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
