@@ -53,7 +53,7 @@ class Todo_ListView(ListView):
   A classe Todo_CreateView é uma view baseada em classe (class-based view) que herda de CreateView.
 """
 class Todo_CreateView(CreateView):
-    model = To_do
-    template_name = "to_do/todo_form.html"
-    fields = ["title", "deadline"]
-    success_url = reverse_lazy("todo_list")
+  model = To_do
+  template_name = "to_do/todo_form.html"
+  fields = ["title", "deadline"]
+  success_url = reverse_lazy("todo_list")
