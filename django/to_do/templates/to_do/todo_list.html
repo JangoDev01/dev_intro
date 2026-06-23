@@ -7,27 +7,27 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Titulo</th>
-                <th scope="col">Data de Criação</th>
-                <th scope="col">Prazo Final</th>
-                <th scope="col">Data de Conclusão</th>
-                <th scope="col">Ações</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Data de Criação</th>
+                    <th scope="col">Prazo Final</th>
+                    <th scope="col">Data de Conclusão</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for td in todo %}
                     <tr>
-                    <th scope="row">{{ td.id }}</th>
-                    <td>{{ td.title }}</td>
-                    <td>{{ td.created_at }}</td>
-                    <td>{{ td.deadline|default:"-" }}</td>
-                    <td>{{ td.finished_at|default:"-" }}</td>
-                    <td>
-                        <a href="#" class="btn btn-success btn-sm">Concluir</a>
-                        <a href="#" class="btn btn-danger btn-sm">Excluir</a>
-                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                    </td>
+                        <th scope="row">{{ td.id }}</th>
+                        <td>{{ td.title }}</td>
+                        <td>{{ td.created_at }}</td>
+                        <td>{{ td.deadline|default:"-" }}</td>
+                        <td>{{ td.finished_at|default:"-" }}</td>
+                        <td>
+                            <a href="#" class="btn btn-success btn-sm">Concluir</a>
+                            <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+                            <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
