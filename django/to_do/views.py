@@ -1,6 +1,5 @@
-from django.views.generic import ListView, CreateView
-from django.urls import reverse_lazy # reverse_lazy é uma função que retorna a URL de uma view com base no nome da view
-                                     # e nos argumentos fornecidos.
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView # Importa as classes de views genéricas do Django.
+from django.urls import reverse_lazy # reverse_lazy é uma função que retorna a URL de uma view com base no nome da view e nos argumentos fornecidos.
 
 from .models import To_do
 
@@ -56,4 +55,36 @@ class Todo_CreateView(CreateView):
   model = To_do
   template_name = "to_do/todo_form.html"
   fields = ["title", "deadline"]
+  success_url = reverse_lazy("todo_list")
+
+
+"""
+  A classe Todo_UpdateView é uma view baseada em classe (class-based view) que herda de UpdateView.
+  Ela é responsável por exibir um formulário para atualizar um objeto existente do modelo To_do.
+  Por padrão, a view irá buscar o objeto a ser atualizado com base no parâmetro "pk" (primary key) passado na URL.
+  A classe define os seguintes atributos:
+    - model: Especifica o modelo que a view irá usar (To_do).
+    - template_name: Especifica o template que a view irá usar.
+    - fields: Especifica os campos do modelo que serão exibidos no formulário.
+    - success_url: Especifica a URL para redirecionar após a atualização bem-sucedida do objeto.
+"""
+class Todo_UpdateView(UpdateView):
+  model = To_do
+  template_name = "to_do/acoes/todo_update.html"
+  fields = ["title", "deadline"]
+  success_url = reverse_lazy("todo_list")
+
+
+"""
+  A classe Todo_DeleteView é uma view baseada em classe (class-based view) que herda de DeleteView.
+  Ela é responsável por exibir um formulário para deletar um objeto existente do modelo To_do.
+  Por padrão, a view irá buscar o objeto a ser deletado com base no parâmetro "pk" (primary key) passado na URL.
+  A classe define os seguintes atributos:
+    - model: Especifica o modelo que a view irá usar (To_do).
+    - template_name: Especifica o template que a view irá usar.
+    - success_url: Especifica a URL para redirecionar após a exclusão bem-sucedida do objeto.
+"""
+class Todo_DeleteView(DeleteView):
+  model = To_do
+  template_name = "to_do/acoes/todo_delete.html"
   success_url = reverse_lazy("todo_list")
