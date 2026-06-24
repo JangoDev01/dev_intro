@@ -25,8 +25,8 @@
                         <td>{{ td.finished_at|default:"-" }}</td>
                         <td>
                             <a href="#" class="btn btn-success btn-sm">Concluir</a>
-                            <a href="#" class="btn btn-danger btn-sm">Excluir</a>
-                            <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                            <a href="{% url 'todo_update' td.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="{% url 'todo_delete' td.pk %}" class="btn btn-danger btn-sm">Excluir</a>
                         </td>
                     </tr>
                 {% endfor %}

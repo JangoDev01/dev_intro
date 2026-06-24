@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Editar Tarefa{% endblock %}
+
+{% block content %}
+    <form method="POST" class="row g-6">
+        <!-- 
+            O token CSRF é necessário para proteger contra ataques de falsificação de solicitação entre sites (Cross-Site Request Forgery)
+            Ele é gerado automaticamente pelo Django e deve ser incluído em todos os formulários que fazem POST para o servidor.
+            Sem esse token, o Django rejeitará a solicitação por motivos de segurança. 
+        -->
+        {% csrf_token %}
+        
+        {{ form|crispy }}
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Atualizar Tarefa</button>
+        </div>
+    </form>
+{% endblock %}
