@@ -4,7 +4,7 @@ URL configuration for setup project.
 from django.contrib import admin
 from django.urls import path
 
-from to_do.views import Todo_ListView, Todo_CreateView, Todo_BaseView, Todo_UpdateView, Todo_DeleteView
+from to_do.views import Todo_ListView, Todo_CreateView, Todo_BaseView, Todo_UpdateView, Todo_DeleteView, Todo_CompleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,6 +15,7 @@ urlpatterns = [
     path("create", Todo_CreateView.as_view(), name="todo_create"),
     path("update/<int:pk>", Todo_UpdateView.as_view(), name="todo_update"),
     path("delete/<int:pk>", Todo_DeleteView.as_view(), name="todo_delete"),
+    path("complete/<int:pk>", Todo_CompleteView.as_view(), name="todo_complete")
 
     # OUTRAS URLS PODEM SER ADICIONADAS AQUI, CASO NECESSÁRIO
 ]
