@@ -1,4 +1,3 @@
-from datetime import date
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View # Importa as classes de views genéricas do Django.
 from django.urls import reverse_lazy # reverse_lazy é uma função que retorna a URL de uma view com base no nome da view e nos argumentos fornecidos.
 from django.shortcuts import get_object_or_404, redirect # a função get_object_or_404 que tenta encontrar um objecto no banco de dados e caso nao encontrar, retorna um 404
@@ -95,9 +94,13 @@ class Todo_DeleteView(DeleteView):
 """
 """
 class Todo_CompleteView(View):
+
+  """
+    regras de negocios devem ser tratadas na camada de models...
+    as views devem ser o mais simples possiveis...
+  """
   def get(self, request, pk):
      todo = get_object_or_404(To_do, pk=pk)
-     todo.finished_at = date.today()
-     todo.save()
+     todo.mark_has_complete()
 
      return redirect("todo_list")
