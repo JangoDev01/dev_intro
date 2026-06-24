@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Nova Tarefa{% endblock %}
+
+{% block content %}
+    <p>Tem certeza que deseja excluir a tarefa <strong>{{ todo.title }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Excluir Tarefa</button>
+        <a href="{% url 'todo_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
