@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+
 function App() {
   // STATES
   const [count, setCount] = useState(0)
@@ -21,6 +24,12 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+      </div>
+
+      <div className="card">
+        <h1>Gerenciador de Tarefas</h1>
+        <Tasks />
+        <AddTask />
       </div>
     </>
   )
