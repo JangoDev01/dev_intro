@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
@@ -27,7 +26,7 @@ function App() {
       </div>
 
       <div className="card">
-        <h1>Gerenciador de Tarefas</h1>
+        <h1 className="text-slate-500 text-3xl">Gerenciador de Tarefas</h1>
         <Tasks />
         <AddTask />
       </div>
