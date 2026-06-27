@@ -1,10 +1,12 @@
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
+
 import { useState } from 'react'
+import { ClipboardPlusIcon } from 'lucide-react';
 
 function App() {
   // STATES
-  const [tasks, sendTasks] = useState(
+  const [tasks, setTasks] = useState(
     [
       {
         id: 1,
@@ -38,22 +40,45 @@ function App() {
     ]
   );
 
+  /**
+   * funcao pra criar um evento de click que muda o estado da variavel isCompleted
+   * e essa funcao sera carregado como um props em Tasks.jsx
+   */
+  function onTaskClick(taskId){
+    const newTask = tasks.map(task => {
+      // 
+      if(task.id == taskId){
+        return{...task, isCompleted: !task.isCompleted}
+      }
+
+      return task;
+    });
+
+    setTasks(newTask);
+
+  }
+
+  /**
+   * 
+   */
+  function onDeleteTaskClick(taskId){
+    const newTask = tasks.filter(task => task.id != taskId);
+
+    setTasks(newTask);
+
+  }
+
   return (
     // DIV PRINCIPAL DA APP
-    <div className='w-screen h-screen bg-slate-700 flex justify-center p-6'>
-      <div className='pr-8'>
-        
-      </div>
-
-      <div>
+    <div className='w-screen h-screen bg-slate-700 flex justify-center p-8'>
+      <div className='w-[500px] space-y-4'>
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
-          </h1>
-        <button>
-          Adicionar Tarefa
+        </h1>
+        <button className="bg-slate-500 text-white p-2 rounded-md">
+            <ClipboardPlusIcon />
         </button>
-        
-        <Tasks tasks={tasks}/>
+        <Tasks tasks={tasks} onTaskClick={onTaskClick} onDeleteTaskClick={onDeleteTaskClick}/>
         <AddTask />
       </div>
     </div>
